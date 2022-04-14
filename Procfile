@@ -1,1 +1,1 @@
-gunicorn nxtdor2.wsgi --log-file -
+web: gunicorn nxtdor2.wsgi --log-file -
