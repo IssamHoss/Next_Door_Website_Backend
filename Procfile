@@ -1,0 +1,1 @@
+gunicorn nxtdor2.wsgi --log-file -
