@@ -6,11 +6,28 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import *
 from rest_framework import generics, status
-
 from .models import *
 
 
 # Create your views here.
+
+### Register View ###
+
+@api_view(['POST'])
+def registration_view(request):
+    if request.method == 'POST':
+        serializer = RegistrationSerializer(data = request.data)
+        data = {}
+        if serializer.is_valid():
+            account =serializer.save()
+            data['response'] = "successfully registered a new user."
+            data['email'] = account.email
+            data['username']= account.username
+            data['name']= account.name
+            data['neighbourhood']= account.neighbourhood
+        else:
+            data = serializer.errors
+        return Response(data)
 
 
 ### product CRUD ###

@@ -1,7 +1,12 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
+
+    ### Register ###
+
+    path('register/', views.registration_view, name= "register"),
     
     ### products ###
 
