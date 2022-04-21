@@ -247,7 +247,7 @@ def jobList(request):
 @api_view(['GET'])
 def jobDetail(request, pk):
     job = Job.objects.get(id=pk)
-    serializer = JobSerializer(Job, many=False)
+    serializer = JobSerializer(job, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])

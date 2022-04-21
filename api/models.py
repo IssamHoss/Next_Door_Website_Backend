@@ -46,7 +46,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active= models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
-    neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE)
+    neighbourhood = models.ForeignKey(Neighbourhood, null = True, on_delete=models.CASCADE)
     profile_image = models.ImageField(null =True, blank =True, upload_to= 'pimages/', default='pimages/def_user.png')
 
     objects= MyAccountManager()
@@ -68,7 +68,7 @@ class Product(models.Model):
             ('Education', 'Education'),
             )
 
-    seller = models.ForeignKey(Account, null= True,on_delete = models.DO_NOTHING)
+    #seller = models.ForeignKey(Account, null= True,on_delete = models.DO_NOTHING)
     neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE) 
     name = models.CharField(max_length=200,  null = False, blank=False, default=  "")
     price = models.FloatField(default = 0.0)
@@ -81,13 +81,11 @@ class Product(models.Model):
         return self.name
 
 class Event(models.Model):
-    organizer = models.ForeignKey(Account, null=True, on_delete=models.DO_NOTHING)
+    #organizer = models.ForeignKey(Account, null=True, on_delete=models.DO_NOTHING)
     neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE) 
     name = models.CharField(max_length=200,  null = False, blank=False, default=  "null")
     timeanddate = models.CharField(max_length= 100, null = False, default ="")
     place = models.CharField(max_length=200, null = False, default ="")
-    participantsnumb =models.IntegerField(null=True)
-    maxparticipants = models.IntegerField(null= True)
     image = models.ImageField(null =True, blank =True, upload_to= 'eventimages/')
 
     def __str__(self):  
@@ -105,12 +103,12 @@ class Facility(models.Model):
         return self.name
 
 class Article(models.Model):
-    author = models.ForeignKey(Account, null = True, on_delete=models.SET_NULL)
+    #author = models.ForeignKey(Account, null = True, on_delete=models.SET_NULL)
     neighbourhood = models.ForeignKey(Neighbourhood, null =True, default ="", on_delete=models.CASCADE) 
     datecreated = models.DateTimeField(auto_now_add = True)
     title = models.CharField(max_length=200,  null = False, blank=False, default=  "")
     text =  models.TextField(max_length=1000, null = False, blank = False, default='')
-    likes = models.IntegerField(null = False, default=0)
+
 
     def __str__(self) :
         return self.title
