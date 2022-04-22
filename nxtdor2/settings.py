@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'api',
     'corsheaders',
     'rest_framework',    
-    'knox',
-    'rest_framework.authtoken',
-
 ]
 
 MIDDLEWARE = [
