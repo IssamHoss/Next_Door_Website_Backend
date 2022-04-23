@@ -12,6 +12,16 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+### auth stuff ###
+
+@api_view(['GET'])
+def getRoutes(request):
+    routes = [
+        '/api/token',
+        '/api/token/refresh'
+    ]
+    return Response(routes)
+
 ### Register View ###
 
 @api_view(['POST'])
