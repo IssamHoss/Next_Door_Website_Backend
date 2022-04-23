@@ -8,11 +8,27 @@ from .serializers import *
 from rest_framework import generics, status
 from .models import *
 from django.contrib.auth.decorators import login_required
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 # Create your views here.
 
 ### auth stuff ###
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, Account):
+        token = super().get_token(Account)
+
+        # Add custom claims
+        token['username'] = Account.username
+        # ...
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 @api_view(['GET'])
 def getRoutes(request):
