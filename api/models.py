@@ -4,6 +4,7 @@ import email
 from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager,  PermissionsMixin
+from nxtdor2 import settings
 
 # Create your models here.
 
@@ -68,7 +69,7 @@ class Product(models.Model):
             ('Education', 'Education'),
             )
 
-    #seller = models.ForeignKey(Account, null= True,on_delete = models.DO_NOTHING)
+    seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE) 
     name = models.CharField(max_length=200,  null = False, blank=False, default=  "")
     price = models.FloatField(default = 0.0)
@@ -81,7 +82,7 @@ class Product(models.Model):
         return self.name
 
 class Event(models.Model):
-    #organizer = models.ForeignKey(Account, null=True, on_delete=models.DO_NOTHING)
+    organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE) 
     name = models.CharField(max_length=200,  null = False, blank=False, default=  "null")
     timeanddate = models.CharField(max_length= 100, null = False, default ="")
@@ -103,7 +104,7 @@ class Facility(models.Model):
         return self.name
 
 class Article(models.Model):
-    #author = models.ForeignKey(Account, null = True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, null =True, default ="", on_delete=models.CASCADE) 
     datecreated = models.DateTimeField(auto_now_add = True)
     title = models.CharField(max_length=200,  null = False, blank=False, default=  "")
@@ -114,7 +115,7 @@ class Article(models.Model):
         return self.title
 
 class Job(models.Model):
-    #user = models.ForeignKey(NewUser, null =True, on_delete=models.DO_NOTHING, )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, null = True, default ="", on_delete=models.CASCADE) 
     title = models.CharField(max_length=200,  null = False, blank=False, default=  "")
     description = models.TextField(max_length=1000, null = False, default ="", blank= False)

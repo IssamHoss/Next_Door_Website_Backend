@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from .serializers import *
 from rest_framework import generics, status
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -272,4 +273,7 @@ def jobDelete(request, pk):
     job = Job.objects.get(id=pk)
     job.delete()
     return Response("job successfully deleted")
+
+
+
 
