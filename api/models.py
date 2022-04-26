@@ -70,7 +70,7 @@ class Product(models.Model):
             )
 
     seller = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
-    neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE) 
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE) 
     name = models.CharField(max_length=200,  null = False, blank=False, default=  "")
     price = models.FloatField(default = 0.0)
     category= models.CharField(max_length=200, choices = CATEGORY, null = False, blank=False, default="Vehicle")
@@ -83,7 +83,7 @@ class Product(models.Model):
 
 class Event(models.Model):
     organizer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
-    neighbourhood = models.ForeignKey(Neighbourhood, null = True, default=  "", on_delete=models.CASCADE) 
+    neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE) 
     name = models.CharField(max_length=200,  null = False, blank=False, default=  "null")
     timeanddate = models.CharField(max_length= 100, null = False, default ="")
     place = models.CharField(max_length=200, null = False, default ="")
