@@ -62,6 +62,7 @@ def registration_view(request):
 ### product CRUD ###
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def productList(request):
     products = Product.objects.all()
     serializer = ProductSerializer(products, many=True)
@@ -75,6 +76,7 @@ def productDetail(request, pk):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def productCreate(request):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
@@ -83,6 +85,7 @@ def productCreate(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def productUpdate(request, pk):
     product = Product.objects.get(id=pk)
     serializer = ProductSerializer(instance= product , data=request.data)
@@ -92,6 +95,7 @@ def productUpdate(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def productDelete(request, pk):
     product = Product.objects.get(id=pk)
     product.delete()
@@ -105,18 +109,21 @@ def productDelete(request, pk):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def neighbourhoodList(request):
     neighbourhood = Neighbourhood.objects.all()
     serializer = ProductSerializer(neighbourhood, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def neighbourhoodDetail(request, pk):
     neighbourhood = Neighbourhood.objects.get(id=pk)
     serializer = NeighbourhoodSerializer(neighbourhood, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def neighbourhoodCreate(request):
     serializer = NeighbourhoodSerializer(data=request.data)
     if serializer.is_valid():
@@ -125,6 +132,7 @@ def neighbourhoodCreate(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def neighbourhoodUpdate(request, pk):
     neighbourhood = Neighbourhood.objects.get(id=pk)
     serializer = NeighbourhoodSerializer(instance= neighbourhood , data=request.data)
@@ -134,6 +142,7 @@ def neighbourhoodUpdate(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def neighbourhoodDelete(request, pk):
     neighbourhood = Neighbourhood.objects.get(id=pk)
     neighbourhood.delete()
@@ -146,18 +155,21 @@ def neighbourhoodDelete(request, pk):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def eventList(request):
     event = Event.objects.all()
     serializer = ProductSerializer(event, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def eventDetail(request, pk):
     event = Event.objects.get(id=pk)
     serializer = EventSerializer(event, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def eventCreate(request):
     serializer = EventSerializer(data=request.data)
     if serializer.is_valid():
@@ -166,6 +178,7 @@ def eventCreate(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def eventUpdate(request, pk):
     event = Event.objects.get(id=pk)
     serializer = EventSerializer(instance= event , data=request.data)
@@ -175,6 +188,7 @@ def eventUpdate(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def eventDelete(request, pk):
     event = Event.objects.get(id=pk)
     event.delete()
@@ -187,18 +201,21 @@ def eventDelete(request, pk):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def facilityList(request):
     facility = Facility.objects.all()
     serializer = ProductSerializer(facility, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def facilityDetail(request, pk):
     facility = Facility.objects.get(id=pk)
     serializer = FacilitySerializer(facility, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def facilityCreate(request):
     serializer = FacilitySerializer(data=request.data)
     if serializer.is_valid():
@@ -207,6 +224,7 @@ def facilityCreate(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def facilityUpdate(request, pk):
     facility = Facility.objects.get(id=pk)
     serializer = FacilitySerializer(instance= facility , data=request.data)
@@ -216,6 +234,7 @@ def facilityUpdate(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def facilityDelete(request, pk):
     facility = Facility.objects.get(id=pk)
     facility.delete()
@@ -228,18 +247,21 @@ def facilityDelete(request, pk):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def articleList(request):
     article = Article.objects.all()
     serializer = ArticleSerializer(article, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def articleDetail(request, pk):
     article = Article.objects.get(id=pk)
     serializer = ArticleSerializer(article, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def articleCreate(request):
     serializer = ArticleSerializer(data=request.data)
     if serializer.is_valid():
@@ -248,6 +270,7 @@ def articleCreate(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def articleUpdate(request, pk):
     facility = Article.objects.get(id=pk)
     serializer = ArticleSerializer(instance= facility , data=request.data)
@@ -257,6 +280,7 @@ def articleUpdate(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def articleDelete(request, pk):
     article = Article.objects.get(id=pk)
     article.delete()
@@ -269,18 +293,21 @@ def articleDelete(request, pk):
 
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def jobList(request):
     job = Job.objects.all()
     serializer = JobSerializer(job, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes((IsAuthenticated,))
 def jobDetail(request, pk):
     job = Job.objects.get(id=pk)
     serializer = JobSerializer(job, many=False)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def jobCreate(request):
     serializer = JobSerializer(data=request.data)
     if serializer.is_valid():
@@ -289,6 +316,7 @@ def jobCreate(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
+@permission_classes((IsAuthenticated,))
 def jobUpdate(request, pk):
     job = Job.objects.get(id=pk)
     serializer = JobSerializer(instance= job , data=request.data)
@@ -298,11 +326,8 @@ def jobUpdate(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
+@permission_classes((IsAuthenticated,))
 def jobDelete(request, pk):
     job = Job.objects.get(id=pk)
     job.delete()
     return Response("job successfully deleted")
-
-
-
-
